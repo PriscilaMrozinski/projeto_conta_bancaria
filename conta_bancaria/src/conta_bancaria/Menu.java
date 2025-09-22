@@ -3,12 +3,43 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.util.Cores;
+import conta_bancaria_model.Conta;
 
 public class Menu {
 
 	public static void main(String[] args) {
 		Scanner leia = new Scanner(System.in);
 		int menu;
+		
+		//Instanciar Objetos da Classe Conta
+		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 50000.00f); 
+		//parametros(conta, numero conta, agencia, nome, saldo conta
+		
+		Conta c2 = new Conta(2, 123, 2, "Priscila Lins", 50000.00f);
+			
+		System.out.println(c1.sacar(1000));
+		System.out.println(c2.sacar(60000));
+		
+		
+		System.out.println("O saldo da conta é: " + c1.getSaldo());
+		//metodo get: retorna o valor		
+		
+		c1.setSaldo(6000000.00f);
+		System.out.println("O saldo da conta é: " + c1.getSaldo());
+		
+		c1.visualizar();
+		
+		c2.visualizar();
+		
+		System.out.println(c1.sacar(1000));
+		System.out.println("O saldo da conta é: " + c1.getSaldo());
+		
+		System.out.println(c2.sacar(1000000));
+		System.out.println("O saldo da conta é: " + c2.getSaldo());
+		
+		c1.depositar(5000);
+		System.out.println("O saldo da conta é: " + c1.getSaldo());
+		
 		
 		do {
 			System.out.println(Cores.TEXT_GRAY + Cores.ANSI_CYAN_BACKGROUND_BRIGHT
