@@ -19,6 +19,18 @@ public class Conta {
 		this.saldo = saldo;
 	}//este atributo numero é o numero que receber do construtor
 	
+	// POLIMORFISMO - SOBRECARGA DE METODO
+	public Conta() {
+		
+	}//exemplo calcular area de um quadrado e triangulo
+	//aqui tem dois construtores, um com parametros e este SEM PARAMETROS, 
+	
+	//adicionando (outro exemplo) POLIMORFISMO SOBRECARGA:
+	//public Conta(int numero, int agencia) {
+		//this.numero = numero;
+		//this.agencia = agencia;
+	//}
+	
 	
 	//Metodos Get e Set
 	public int getNumero() {

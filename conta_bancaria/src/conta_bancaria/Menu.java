@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import conta_bancaria.util.Cores;
 import conta_bancaria_model.Conta;
+import conta_bancaria_model.ContaCorrente;
 
 public class Menu {
 
@@ -15,7 +16,7 @@ public class Menu {
 		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 50000.00f); 
 		//parametros(conta, numero conta, agencia, nome, saldo conta
 		
-		Conta c2 = new Conta(2, 123, 2, "Priscila Lins", 50000.00f);
+		Conta c2 = new Conta(2, 123, 2, "Priscila Lins Mrozinski", 50000.00f);
 			
 		System.out.println(c1.sacar(1000));
 		System.out.println(c2.sacar(60000));
@@ -39,6 +40,36 @@ public class Menu {
 		
 		c1.depositar(5000);
 		System.out.println("O saldo da conta é: " + c1.getSaldo());
+		
+		
+		//Instanciar Objetos da Classe ContaCorrente: //lembra de importar a Classe!
+		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Thuany Silva", 25000.00f, 5000.00f);
+		cc1.visualizar();
+		//Para conseguir visualizar o Limite:
+		//usa o conceito de POLIMORFISMO: sobrescreve um metodo (reescreve o metodo da conta na contaCorrente)
+		
+		//Polimorfismo de SOBRECARGA:
+		//não traz os atributos
+		//Conta c4 = new Conta () {
+			
+		//};
+		
+		//Outro exemplo POLIMORFISMO SOBRECARGA:
+		//int numero, int agencia
+		//Conta c4 = new Conta (4, 879);
+		
+		//Polimorfismo -Sobreescrita
+		//Teste conta corrente, sacar com limite:
+		System.out.println(cc1.sacar(32000.00f));
+		cc1.visualizar();
+		
+		System.out.println(cc1.sacar(5000.00f));
+		cc1.visualizar();
+		
+		//teste depositar:
+		cc1.depositar(200.00f);
+		cc1.visualizar();
+		
 		
 		
 		do {
