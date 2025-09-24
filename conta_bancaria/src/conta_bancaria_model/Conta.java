@@ -100,10 +100,10 @@ public class Conta {
 		System.out.println("Dados da Conta");
 		System.out.println("*******************");
 		System.out.printf("Número da conta: %d%n", this.numero);
-		System.out.printf("Número da conta: %d%n", this.agencia);
-		System.out.printf("Número da conta: %s%n", tipo);//altera o this.tipo para tipo, assim aparece a a escrita
-		System.out.printf("Número da conta: %s%n", this.titular);
-		System.out.printf("Número da conta: %.2f%n", this.saldo);
+		System.out.printf("Número da agencia: %d%n", this.agencia);
+		System.out.printf("Tipo de conta: %s%n", tipo);//altera o this.tipo para tipo, assim aparece a a escrita
+		System.out.printf("Nome do titular: %s%n", this.titular);
+		System.out.printf("Saldo: %.2f%n", this.saldo);
 	}//assim não precisa chamar vários gets
 	
 	

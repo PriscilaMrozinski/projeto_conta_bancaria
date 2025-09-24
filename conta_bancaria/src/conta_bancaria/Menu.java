@@ -5,6 +5,7 @@ import java.util.Scanner;
 import conta_bancaria.util.Cores;
 import conta_bancaria_model.Conta;
 import conta_bancaria_model.ContaCorrente;
+import conta_bancaria_model.ContaPoupanca;
 
 public class Menu {
 
@@ -70,7 +71,12 @@ public class Menu {
 		cc1.depositar(200.00f);
 		cc1.visualizar();
 		
+		//TESTE CONTA POUPANÇA:
+		ContaPoupanca pop1 = new ContaPoupanca (1, 123, 2, "João da Silva", 650.00f, 24);
+		pop1.render(24);
+		pop1.visualizar();
 		
+
 		
 		do {
 			System.out.println(Cores.TEXT_GRAY + Cores.ANSI_CYAN_BACKGROUND_BRIGHT
