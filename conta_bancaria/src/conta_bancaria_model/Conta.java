@@ -1,6 +1,6 @@
 package conta_bancaria_model;
  
-public class Conta {
+public abstract class Conta {
  
 	
 	//Atributos da Classe
@@ -86,7 +86,7 @@ public class Conta {
 		this.saldo = this.saldo + valor;
 	}//Lembra que VOID não retorna valor
 	
-	
+	//public abstract void teste(); - apenas para visualizar como escreve
 	
 	public void visualizar() {
 		String tipo = "";
