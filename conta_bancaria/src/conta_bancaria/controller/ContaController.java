@@ -33,7 +33,7 @@ public class ContaController implements ContaRepository{
 				listaContas.set(listaContas.indexOf(buscarConta), conta);
 				System.out.printf("\nA conta número: %d foi atualizada com sucesso!%n", conta.getNumero());
 			}else {
-				System.out.printf("\nA Conta número: %d não foi encontrada!%n", numero);
+				System.out.printf("\nA Conta número: %d não foi encontrada!%n", conta.getNumero());
 			}
 	}
 		
