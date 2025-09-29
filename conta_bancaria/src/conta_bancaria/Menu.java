@@ -47,6 +47,7 @@ public class Menu {
 			System.out.println("6 - Sacar                   		");
 			System.out.println("7 - Depositar                		");
 			System.out.println("8 - Transferir valores entre Contas	");
+			System.out.println("9 - Procurar por nome		");
 			System.out.println("0 - Sair							");
 			System.out.println(Cores.TEXT_GRAY + Cores.ANSI_CYAN_BACKGROUND_BRIGHT
 			        + "************************************************");
@@ -99,14 +100,22 @@ public class Menu {
 				break;
 			case 6: 	
 				System.out.println(Cores.TEXT_RESET + Cores.TEXT_PURPLE + "--- Sacar ---\n\n");
+				sacar();
 				keyPress();		
 				break;
 			case 7: 
 				System.out.println(Cores.TEXT_RESET + Cores.TEXT_PURPLE + "--- Depositar ---\n\n");
+				depositar();
 				keyPress();		
 				break;
 			case 8: 
 				System.out.println(Cores.TEXT_RESET + Cores.TEXT_PURPLE + "--- Transferir valores entre Contas ---");
+				transferir();
+				keyPress();		
+				break;
+			case 9:
+				System.out.println(Cores.TEXT_RESET + Cores.TEXT_PURPLE + "--- Procurar pelo titular da Conta ---");
+				procurarPorTitular();
 				keyPress();		
 				break;
 			case 0: 
@@ -265,4 +274,53 @@ public class Menu {
 			System.out.printf("\nA conta número %d não foi encontrada!", numero);
 		}
 	}
+	
+	private static void sacar() {
+		System.out.print("Digite o número da conta: ");
+		int numero = leia.nextInt();
+		leia.nextLine();
+		
+		System.out.print("Digite o valor do saque: ");
+		float valor = leia.nextFloat();
+		leia.nextLine();
+		
+		contaController.sacar(numero,  valor);
+	}
+	
+	private static void depositar() {
+		System.out.print("Digite o número da conta: ");
+		int numero = leia.nextInt();
+		leia.nextLine();//funciona como o skip"R"
+		
+		System.out.print("Digite o valor do depósito: ");
+		float valor = leia.nextFloat();
+		leia.nextLine();
+		
+		contaController.depositar(numero,  valor);
+	}
+	
+	private static void transferir() {
+		System.out.print("Digite o número da conta de Origem: ");
+		int numeroOrigem = leia.nextInt();
+		leia.nextLine();//funciona como o skip"R"
+		
+		System.out.print("Digite o número da conta de Destino: ");
+		int numeroDestino = leia.nextInt();
+		leia.nextLine();//funciona como o skip"R"
+		
+		System.out.print("Digite o valor da transferência: ");
+		float valor = leia.nextFloat();
+		leia.nextLine();
+		
+		contaController.transferir(numeroOrigem, numeroDestino, valor);
+	}
+	
+	private static void procurarPorTitular() {
+		System.out.println("Digite o nome do titular da conta: ");
+		String titular = leia.nextLine();
+		
+		contaController.listarPorTitular(titular);//chama o método titular
+	}
+	
+	
 }

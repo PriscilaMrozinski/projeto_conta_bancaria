@@ -2,6 +2,7 @@ package conta_bancaria.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import conta_bancaria.repository.ContaRepository;
 import conta_bancaria_model.Conta;
@@ -62,18 +63,65 @@ public class ContaController implements ContaRepository{
 
 	@Override
 	public void sacar(int numero, float valor) {
-		// TODO Auto-generated method stub
+		// 1º verifica se a conta existe: ou seja buscanacollection
+		// 2º depois saca
+		var conta = buscarNaCollection(numero);
+		if(conta!=null) {
+			if(conta.sacar(valor)==true) {
+				System.out.printf("\nO saque no valor de %.2f, na conta número: %d foi efetuado com sucesso!%n", valor, numero);
+			}
+		}else {
+			System.out.printf("\nA Conta número: %d não foi encontrada!%n", numero);
+		}
 	}
 
 	@Override
 	public void depositar(int numero, float valor) {
-		// TODO Auto-generated method stub
+		var conta = buscarNaCollection(numero);
+		if(conta!=null) {
+			conta.depositar(valor);
+				System.out.printf("\nO depósito no valor de %.2f, na conta número: %d foi efetuado com sucesso!%n", valor, numero);
+		}else {
+			System.out.printf("\nA Conta número: %d não foi encontrada!%n", numero);
+		}
+		
+		
 	}
-
-	@Override
-	public void transferir(int numeroOrigem, int numeroDestino, float valor) {
-		// TODO Auto-generated method stub
+		
+		@Override
+		public void transferir(int numeroOrigem, int numeroDestino, float valor) {
+			
+			var contaOrigem = buscarNaCollection(numeroOrigem);
+			var contaDestino = buscarNaCollection(numeroDestino);
+			
+			if(contaOrigem != null && contaDestino != null) {
+				if(contaOrigem.sacar(valor) == true) {
+					contaDestino.depositar(valor);
+					System.out.printf("\n"
+							+ "A Transferência no valor de %.2f, na conta de número: %d para a conta número: %d, foi efetuada com sucesso!%n",
+							valor, numeroOrigem, numeroDestino);
+				}
+			}else {
+				System.out.println("\nA Conta de Origem e/pu Conta de Destino não foram encontradas!%n");
+			}
 	}
+		
+		@Override
+		public void listarPorTitular(String titular) {
+			//Para isso usa Streams com filter
+			List<Conta> listaTitulares = listaContas.stream()
+					.filter(conta -> conta.getTitular().toUpperCase().contains(titular.toUpperCase()))
+					.collect(Collectors.toList());
+			
+			if(listaTitulares.isEmpty()) {
+				System.out.printf("\nNenhuma conta foi encontrada para titulares que possuam o nome: %s", titular);
+			}
+			
+			for(var conta : listaTitulares) {
+				conta.visualizar();
+			}
+			
+		}
 	
 	//Métodos Auxiliares:
 	public int gerarNumero() {
@@ -89,5 +137,7 @@ public class ContaController implements ContaRepository{
 		}
 		return null;//esse bloco é um exemplo de Optional
 	}
+
+	
 
 }
